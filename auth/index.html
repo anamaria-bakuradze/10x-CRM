@@ -4,9 +4,22 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="../components/style.css" />
-        <script src="../components/navbar.js"></script>
+        <script src="auth.js"></script>
     </head>
     <body>
-
+        <div id="auth">
+            <h1>Log In</h1>
+            <form action="/" method="POST">
+                <label>
+                    Email/Username:
+                    <input type="text" name="username" required />
+                </label>
+                <label>
+                    Password:
+                    <input type="password" name="password" required />
+                </label>
+                <button type="submit">Log In</button>
+            </form>
+            </div>
     </body>
 </html>

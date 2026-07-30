@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../components/style.css" />
+        <script src="auth.js"></script>
+    </head>
+    <body>
+        <div id="auth">
+            <h1>Create Account</h1>
+            <form action="/" method="POST" >
+                <label for="fullname">Full name:</label><br>
+                <input type="text" name="fullname" id="fullname" required /><br>
+                <label for="email">Email:</label><br>
+                <input type="text" name="email" id="email" required /><br>
+                <label for="company">Company:</label><br>
+                <input type="text" name="company" id="company" placeholder="Company Name (Optional)" /><br>
+                <label for="password">Password:</label><br>
+                <input type="password" name="password" id="password" required /><br>
+                <label for="confirmPassword">Confirm Password:</label><br>
+                <input type="password" name="confirmPassword" id="confirmPassword" required /><br>
+                
+                <button id="submit" type="submit">Create Account</button><br>
+                <label>Already have an account? <a href="index.html">Log In</a></label>
+            </form>
+        </div>
+    </body>
+</html>
