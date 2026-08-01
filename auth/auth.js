@@ -56,20 +56,41 @@ function signUp(event) {
 
 }
 
-function LogIn(event) {
-  // sconsole.log("Script loaded");
+function logIn(event) {
 
   event.preventDefault();
+  const email = document.forms["login"]["email"].value.toLowerCase().trim();
+  const password = document.forms["login"]["password"].value.trim();
+  const crm_users = JSON.parse(localStorage.getItem("crm_users")) || [];
+  const email_alert = document.getElementById("email-alert");
 
-  if (document.forms["login"]["email"].value == "") {
-    alert("Please provide your Email!");
+  if (email == "") {
+    document.forms["login"]["email"].style.borderColor = "red";
+    email_alert.classList.remove("valid");
+    email_alert.classList.add("input-error");
+    email_alert.innerHTML = "Email is required";
     document.forms["login"]["email"].focus();
     return false;
-  }
+  } else if (!crm_users.includes(email)) {
+    alert("Invalid email or password");
+    document.forms["login"]["email"].focus();
+    return false;
+  } else {
+    document.forms["login"]["email"].style.borderColor = "";
+    email_alert.classList.remove("input-error");
+    email_alert.classList.add("valid");
+    email_alert.innerHTML = "";}
 
-  if (document.forms["login"]["password"].value == "") {
-    alert("Please provide your password!");
+  if (password == "") {
+    alert("Password is required");
+    document.forms["login"]["password"].focus();
+    return false;
+  } else if (crm_users[email].password !== password) {
+    alert("Invalid email or password");
     document.forms["login"]["password"].focus();
     return false;
   }
+
+  return true;
+
 }

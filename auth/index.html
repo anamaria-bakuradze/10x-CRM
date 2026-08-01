@@ -26,8 +26,19 @@
 
             form.addEventListener("submit", (e) => {
                 e.preventDefault();
-                LogIn(e);
+                logIn(e);
             });
+
+            const success = logIn(e);
+            if(success) {
+                crm_session.push({ 
+                    userId: crm_users[email].id, 
+                    email: email,
+                    loginAt: new Date().toISOString(),
+                 });
+                
+                window.location.replace("./dashboard.html");
+            }
 
         </script>
     </body>
