@@ -121,3 +121,12 @@ nav ul {
 #auth label {
     margin-left: 40px;
 }
+
+#toast {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 16px; /* Some padding */
+    position: fixed; /* Sit on top of the screen */
+    margin: 0 auto; /* Center it horizontally */
+    
+}

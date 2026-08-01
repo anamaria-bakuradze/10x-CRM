@@ -8,18 +8,27 @@
     </head>
     <body>
         <div id="auth">
-            <h1>Log In</h1>
+            <h1>Welcome back</h1>
             <form action="/" method="POST">
-                <label>
-                    Email/Username:
-                    <input type="text" name="username" required />
-                </label>
-                <label>
-                    Password:
-                    <input type="password" name="password" required />
-                </label>
-                <button type="submit">Log In</button>
+                <label>Email:</label><br>
+                <input type="text" name="email" required /><br>
+                <label>Password:</label><br>
+                <input type="password" name="password" required /><br>
+                
+                <button type="submit">Log In</button><br>
+                <label>Don't have an account? <a href="signup.html">Sign Up</a></label>
+                <input name="p" value="login" type="hidden" />
             </form>
-            </div>
+        </div>
+            
+        <script>
+            const form = document.querySelector("form");
+
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                LogIn(e);
+            });
+
+        </script>
     </body>
 </html>

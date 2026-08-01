@@ -9,9 +9,9 @@
     <body>
         <div id="auth">
             <h1>Create Account</h1>
-            <form action="/" method="POST" >
+            <form name="signUp" action="" method="POST">
                 <label for="fullname">Full name:</label><br>
-                <input type="text" name="fullname" id="fullname" required /><br>
+                <input type="text" name="fullname" id="fullname" /><br>
                 <label for="email">Email:</label><br>
                 <input type="text" name="email" id="email" required /><br>
                 <label for="company">Company:</label><br>
@@ -25,5 +25,25 @@
                 <label>Already have an account? <a href="index.html">Log In</a></label>
             </form>
         </div>
+
+        <p id="toast" style="display: none;">Account created successfully! Please log in.</p>
     </body>
+
+    <script>
+        const form = document.querySelector("form");
+        // const success = false;
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const success = signUp(e);
+            
+            if(success) {
+                document.getElementById("toast").style.display = "block";
+                setTimeout(() => {
+                    window.location.replace("./index.html");
+                }, 1500);
+            }
+        });
+
+
+    </script>
 </html>

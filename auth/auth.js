@@ -1,17 +1,75 @@
-const fullname = document.getElementById('fullname');
-const email = document.getElementById('email');
-const company = document.getElementById('company');
-const password = document.getElementById('password');
-const form = document.querySelector('form');
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-});
 
-if (fullname.trim().length < 3) {
-    document.getElementById('fullname').style.borderColor = 'red';
-    document.getElementById('fullname').addElement('span').innerText = 'Full name must be at least 3 characters long.';
-} else if (document.getElementById('fullname').style.borderColor == 'red') {
-    document.getElementById('fullname').style.borderColor = '';
+function signUp(event) {
+  // console.log("Script loaded");
+  event.preventDefault();
+
+  if (document.forms["signUp"]["fullname"].value.trim().length < 3) {
+    alert("Full name must be at least 3 characters");
+    document.forms["signUp"]["fullname"].focus();
+    return false;
+  }
+
+  const email = document.forms["signUp"]["email"].value.toLowerCase().trim();
+
+  if (email.includes("@") == false || email.indexOf(".") <= email.indexOf("@")) {
+    alert("Please enter a valid email address");
+    document.forms["signUp"]["email"].focus();
+    return false;
+  }
+
+  try {if (crm_users.some(user => user.email === email)) {
+    alert("An account with this email already exists");
+    document.forms["signUp"]["email"].focus();
+    return false;
+  }} catch (error) {
+
+  }
+
+  const password = document.getElementById("password").value.trim();
+  // var letter = document.getElementById("letter");
+  // var number = document.getElementById("number");
+  // var length = document.getElementById("length");
+
+  if (password.length < 8 || !/[A-Z]/i.test(password) || !/[0-9]/.test(password)) {
+    alert("Password must be at least 8 characters and contain a letter and a number");
+    document.forms["signUp"]["password"].focus();
+    return false;
+  }
+
+  if (password != document.forms["signUp"]["confirmPassword"].value.trim()) {
+    alert("Passwords do not match");
+    document.forms["signUp"]["confirmPassword"].focus();
+    return false;
+  }
+
+  // crm_users.push({
+  //   id: Date.now(),
+  //   fullname: document.forms["signUp"]["fullname"].value,
+  //   email: document.forms["signUp"]["email"].value.toLowerCase(),
+  //   password: document.forms["signUp"]["password"].value,
+  //   company: document.forms["signUp"]["company"].value,
+  //   createdAt: new Date().toISOString(),
+  // });
+
+  return true;
+
 }
 
+function LogIn(event) {
+  // sconsole.log("Script loaded");
+
+  event.preventDefault();
+
+  if (document.forms["login"]["email"].value == "") {
+    alert("Please provide your Email!");
+    document.forms["login"]["email"].focus();
+    return false;
+  }
+
+  if (document.forms["login"]["password"].value == "") {
+    alert("Please provide your password!");
+    document.forms["login"]["password"].focus();
+    return false;
+  }
+}
