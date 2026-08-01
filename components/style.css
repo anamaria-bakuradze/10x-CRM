@@ -26,6 +26,12 @@ body {
 
 }
 
+#logOutBtn {
+    background: none;
+    padding: 20px;
+    overflow: clip;
+}
+
 nav {
     width: 100%;
     height: 60px; /* Adjust based on your navbar height */
@@ -49,18 +55,18 @@ nav ul {
 
 #logOut, #themeToggle {
     /* background: none; */
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     color: #fff;
-    font-size: 1rem;
+    /* font-size: 1rem; */
     cursor: pointer;
     z-index: 1002; /* Ensure it stays above the mobile nav */
 }
 
 .mobile-nav {
     position: fixed;
-    top: -70px; /* Start off-screen */
+    top: -90px; /* Start off-screen */
     right: 0;
 
     width: 260px;
@@ -68,16 +74,19 @@ nav ul {
     transition: transform 0.35s ease;
     z-index: 800;
     /* padding-top: 80px; */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .mobile-nav.open {
-    transform: translateY(130px);
+    transform: translateY(150px);
 }
 
 .mobile-nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    overflow: clip;
 }
 
 .mobile-nav li {
@@ -86,7 +95,7 @@ nav ul {
 
 .mobile-nav a {
     display: block;
-    padding: 18px 24px;
+    padding: 25px 30px;
     color: #fff;
     text-decoration: none;
     font-size: 1.1rem;

@@ -1,7 +1,5 @@
 
-
 function signUp(event) {
-  // console.log("Script loaded");
   event.preventDefault();
 
   if (document.forms["signUp"]["fullname"].value.trim().length < 3) {
@@ -43,54 +41,69 @@ function signUp(event) {
     return false;
   }
 
-  // crm_users.push({
-  //   id: Date.now(),
-  //   fullname: document.forms["signUp"]["fullname"].value,
-  //   email: document.forms["signUp"]["email"].value.toLowerCase(),
-  //   password: document.forms["signUp"]["password"].value,
-  //   company: document.forms["signUp"]["company"].value,
-  //   createdAt: new Date().toISOString(),
-  // });
+  const crm_users = JSON.parse(localStorage.getItem("crm_users")) || [];
+
+  crm_users.push({
+    id: Date.now(),
+    fullname: document.forms["signUp"]["fullname"].value,
+    email: document.forms["signUp"]["email"].value.toLowerCase(),
+    password: document.forms["signUp"]["password"].value,
+    company: document.forms["signUp"]["company"].value,
+    createdAt: new Date().toISOString(),
+  });
+
+  localStorage.setItem("crm_users", JSON.stringify(crm_users));
 
   return true;
-
 }
 
 function logIn(event) {
-
   event.preventDefault();
+
   const email = document.forms["login"]["email"].value.toLowerCase().trim();
   const password = document.forms["login"]["password"].value.trim();
   const crm_users = JSON.parse(localStorage.getItem("crm_users")) || [];
+  
   const email_alert = document.getElementById("email-alert");
+
+    document.forms["login"]["email"].style.borderColor = "";
+    email_alert.classList.remove("input-error");
+    email_alert.classList.add("valid");
+    email_alert.innerHTML = "";
 
   if (email == "") {
     document.forms["login"]["email"].style.borderColor = "red";
-    email_alert.classList.remove("valid");
+    email_alert.classList.remove("valid");s
     email_alert.classList.add("input-error");
     email_alert.innerHTML = "Email is required";
     document.forms["login"]["email"].focus();
     return false;
-  } else if (!crm_users.includes(email)) {
+  } else if (crm_users.some(user => user.email === email) == false) {
     alert("Invalid email or password");
     document.forms["login"]["email"].focus();
     return false;
-  } else {
-    document.forms["login"]["email"].style.borderColor = "";
-    email_alert.classList.remove("input-error");
-    email_alert.classList.add("valid");
-    email_alert.innerHTML = "";}
+  }
+
 
   if (password == "") {
     alert("Password is required");
     document.forms["login"]["password"].focus();
     return false;
-  } else if (crm_users[email].password !== password) {
+  } else if (crm_users.find(user => user.email === email).password != password) {
     alert("Invalid email or password");
     document.forms["login"]["password"].focus();
     return false;
   }
 
+  const crm_session = { 
+      userId: JSON.parse(localStorage.getItem("crm_users")).find(user => user.email === email).id, 
+      email: JSON.parse(localStorage.getItem("crm_users")).find(user => user.email === email).email,
+      loginAt: new Date().toISOString(),
+  };
+
+  localStorage.setItem("crm_session", JSON.stringify(crm_session));
   return true;
 
 }
+
+

@@ -1,6 +1,6 @@
 function Nav() {
     document.getElementById("navContainer").innerHTML = `
-    <img src="../components/logo.png" alt="Logo" class="logo" />
+    <img src="../components/logo2.jpg" alt="Logo" class="logo" style="width: 50px; height: 50px; border-radius: 50%;" />
     <!-- <button class="hamburger" id="hamburger" aria-label="Menu"> -->
 
         <nav class="navigation">
@@ -17,7 +17,7 @@ function Nav() {
             </ul>
         </div>
 
-        <button id="logOut">
+        <button id="logOut" aria-label="Log Out">
             <!-- <span></span>
             <span></span>
             <span></span> -->
@@ -40,6 +40,13 @@ function Nav() {
     hamburger.addEventListener('click', toggleMenu);
     // overlay.addEventListener('click', toggleMenu);
 
+    document.getElementById("logOutBtn").addEventListener("click", logOut);
+
+    function logOut() {
+        console.log("Logging out...");
+        localStorage.removeItem("crm_session");
+        window.location.replace("../auth/index.html");
+    }
 }
 
 
